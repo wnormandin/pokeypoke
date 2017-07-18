@@ -57,7 +57,7 @@ optional arguments:
  -  Output File         : creds.20170718-173742.txt
  -  WordPress           : True
  -  Joomla              : False
- -  Seeking target: https://pokeybill.us/btester/wp-login.php
+ -  Seeking target: https://test.us/wp-login.php
  -  Found 1000000 words
  -  Trying 123456, 999999 words remain
  -  Trying password, 999998 words remain
